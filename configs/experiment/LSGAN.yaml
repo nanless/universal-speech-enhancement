@@ -1,0 +1,27 @@
+# @package _global_
+
+# to execute this experiment run:
+# python train.py experiment=example
+
+defaults:
+  - override /model: LSGAN
+  - override /logger: tensorboard
+
+# all parameters below will be merged with parameters from default configurations set above
+# this allows you to overwrite only specified parameters
+
+tags: ["Distort_original-LSGAN"]
+
+seed: 12345
+
+data:
+  batch_size: 2
+
+model:
+  accumulate_grad_batches: 4
+
+callbacks:
+  model_checkpoint:
+    monitor: "val/loss_G_epoch"
+  early_stopping:
+    monitor: "val/loss_G_epoch"

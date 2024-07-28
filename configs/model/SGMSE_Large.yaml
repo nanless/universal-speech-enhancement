@@ -1,0 +1,33 @@
+_target_: src.models.SGMSE_module.SGMSEModule
+
+Score:
+  _target_: src.models.components.sgmse.model_wrapper.ScoreModel
+  backbone: "ncsnpplarge"
+  sde: "ouve"
+  t_eps: 3e-2
+  mode: "regen-joint-training"
+  condition: "noisy"
+  loss_type: "mse"
+  n_fft: 1022
+  hop_length: 160
+  num_frames: 512
+  window: "hann"
+  spec_factor: 0.15
+  spec_abs_exponent: 0.5
+  sde_input: "noisy"
+
+optimizer:
+  _target_: torch.optim.Adam
+  _partial_: true
+  lr: 5e-4
+  weight_decay: 1e-7
+
+scheduler:
+  _target_: torch.optim.lr_scheduler.StepLR
+  _partial_: true
+  step_size: 30
+  gamma: 0.5
+  verbose: true
+
+# compile model for faster training with pytorch 2.0
+compile: false

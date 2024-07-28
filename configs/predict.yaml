@@ -1,0 +1,20 @@
+# @package _global_
+
+defaults:
+  - _self_
+  - data: loadwav # choose datamodule with `test_dataloader()` for evaluation
+  - model: LSGANStorm_Large
+  - logger: null
+  - trainer: default
+  - paths: default
+  - extras: default
+  - hydra: default
+
+  - experiment: null
+
+task_name: "predict"
+
+tags: ["dev"]
+
+# passing checkpoint path is necessary for evaluation
+ckpt_path: null

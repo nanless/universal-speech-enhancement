@@ -1,0 +1,28 @@
+# @package _global_
+
+# to execute this experiment run:
+# python train.py experiment=example
+
+defaults:
+  - override /model: SGMSE_Large
+  - override /logger: tensorboard
+
+# all parameters below will be merged with parameters from default configurations set above
+# this allows you to overwrite only specified parameters
+
+tags: ["Distort_original-SGMSE_Large"]
+
+seed: 12345
+
+data:
+  batch_size: 2
+
+callbacks:
+  model_checkpoint:
+    monitor: "val/loss_Score_epoch"
+  early_stopping:
+    monitor: "val/loss_Score_epoch"
+
+trainer:
+  gradient_clip_val: 100
+  accumulate_grad_batches: 4

@@ -1,0 +1,177 @@
+_target_: src.data.distort_datamodule.DistortDataModule
+clean_json_path_train: /data1/data/lists/ears_all_speech.json
+clean_json_path_valid: /data1/data/lists/ears_all_speech_tail1000.json
+clean_json_path_test: /data1/data/lists/ears_all_speech_tail100.json
+noise_json_path_train: /data1/data/lists/DNS5_noise_VAD_filtered_0706.json
+noise_json_path_valid: /data1/data/lists/DNS5_noise_VAD_filtered_0706.json
+noise_json_path_test: /data1/data/lists/DNS5_noise_VAD_filtered_0706.json
+rir_list_path_train: /data1/data/lists/rirs_monaural_farfield_20240706_24k_alldistances.list
+rir_list_path_valid: /data1/data/lists/rirs_monaural_farfield_20240706_24k_alldistances.list
+rir_list_path_test: /data1/data/lists/rirs_monaural_farfield_20240706_24k_alldistances.list
+check_list_files: False
+### number of speakers
+min_n_speakers: 1
+max_n_speakers: 1
+### whether use duration filter
+min_duration_seconds: 1
+### whether remove dc offset
+remove_dc_offset: True
+### target sampling rate
+sampling_rate: 24000
+resample_method: "fft"
+### speech splice configuration
+speech_splice: True
+speech_splice_equal_volume: True
+speech_splice_equal_volume_range: [-6, 6]
+speech_splice_seconds: 6
+speech_random_start: True
+add_extra_space_prob: 0.3
+### reverbrate configuration
+reverb_prob: 0.5
+reverb_use_FRA: False
+# rir_list_path: "/data2/zhounan/data/lists/rirs_monaural_farfield_20231008_48k_alldistances.list"
+# rir_list_path: "/root/data/lists/rirs_monaural_farfield_20231008_48k_alldistances.list"
+reverb_noise: False
+# min_rt60: 0.1
+# max_rt60: 0.8
+### add noise configuration
+add_noise_prob: 0.5
+only_noise_prob: 0
+noise_repeat_splice: False
+trim_noise: True
+snr_min: 10
+snr_max: 30
+noise_mix_prob: 0.5
+### speed perturb configuration
+speed_perturb_prob: 0
+speed_rate_min: 0.8
+speed_rate_max: 1.2
+### pitch perturb configuration
+pitch_shift_prob: 0
+semitones_down: -1.5
+semitones_up: 1.5
+### loudness perturb configuration
+loudness_perturb_prob: 0
+loudness_min_factor: 0.1
+loudness_max_factor: 10
+loudness_max_n_intervals: 5
+### hard clipping perturb configuration
+clip_prob: 0.2
+hard_clip_portion: 0.8
+hard_clip_on_rate: True
+hard_clip_rate_min: 0
+hard_clip_rate_max: 0.2
+### sorf clipping perturb configuration
+soft_clip_types: ["sox", "pedal", "soft", "sigmoid1", "sigmoid2"]
+### eq perturb configuration
+eq_perturb_prob: 0.2
+eq_db_min: -40
+eq_db_max: 0
+### eq much gain perturb configuration
+eq_much_gain_prob: 0.1
+eq_much_gain_db_min: 5
+eq_much_gain_db_max: 30
+eq_much_gain_freq_min: 1500
+eq_much_gain_freq_max: 12000
+### band reject perturb configuration
+band_reject_prob: 0.15
+band_reject_min_center_freq: 100
+band_reject_max_center_freq: 12000
+# band_reject_min_q: 0.5
+# band_reject_max_q: 8
+band_reject_min_freq_bandwidth: 20
+band_reject_max_freq_bandwidth: 500
+band_reject_use_stft: True
+band_reject_max_n: 2
+### bass boost perturb configuration
+bass_boost_prob: 0.1
+bass_boost_highpass_cutoff_min: 500
+bass_boost_highpass_cutoff_max: 2000
+bass_boost_attenuation_min_db: -40
+### DC offset perturb configuration
+dc_offset_prob: 0.05
+dc_offset_min: 0.001
+dc_offset_max: 0.2
+### spectral leakage perturb configuration
+spectral_leakage_prob: 0.05
+spectral_leakage_window_lengths: [1024, 2048, 4096]
+spectral_leakage_max_time_shift: 20
+### colored noise perturb configuration
+colored_noise_prob: 0.5
+colered_noise_snr_min: 0
+colered_noise_snr_max: 50
+colered_noise_types: ["white", "pink", "equalized"]
+### low pass perturb configuration
+lowpass_prob: 0.6
+lowpass_min_cutoff_freq: 800
+lowpass_max_cutoff_freq: 12000
+lowpass_min_order: 4
+lowpass_max_order: 20
+### spectra time frequency hole mask
+spectral_time_freq_holes_prob: 0.2
+spectral_time_freq_holes_stft_frame_length: 1024
+spectral_time_freq_holes_stft_frame_step: 256
+spectral_time_freq_holes_stft_holes_num_min: 1
+spectral_time_freq_holes_stft_holes_num_max: 250
+spectral_time_freq_holes_stft_holes_width_min_freq: 1
+spectral_time_freq_holes_stft_holes_width_max_freq: 9
+spectral_time_freq_holes_stft_holes_width_min_time: 1
+spectral_time_freq_holes_stft_holes_width_max_time: 12
+spectral_time_freq_holes_cutoff_freq: 10000
+### webrtc ns configuration
+webrtc_ns_prob: 0
+webrtc_ns_levels: [0, 1, 2, 3]
+webrtc_ns_volume_protection: True
+### webrtc agc configuration
+webrtc_agc_prob: 0
+webrtc_agc_target_level_dbfs_max: -3
+webrtc_agc_target_level_dbfs_min: -31
+### drc configuration
+drc_prob: 0
+drc_threshold_db_min: -50
+drc_threshold_db_max: 0
+drc_ratio_min: 1
+drc_ratio_max: 20
+drc_attack_ms_min: 0.5
+drc_attack_ms_max: 5.0
+drc_release_ms_min: 50
+drc_release_ms_max: 1000
+### codecs perturb configuration
+codecs_prob: 0.3
+# codecs_types: ["mp3", "gsm"]
+codecs_types: ["mp3", "gsm", "opus"]
+### packet loss perturb configuration
+packet_loss_prob: 0.3
+# packet_loss_prob: 0
+packet_loss_rate_min: 0.05
+packet_loss_rate_max: 0.15
+packet_loss_frame_time_min: 0.008
+packet_loss_frame_time_max: 0.04
+packet_loss_decay_rate_min: 0
+packet_loss_decay_rate_max: 0.2
+packet_loss_hard_loss_prob: 1.0
+packet_loss_on_vad: False
+### bit crush perturb configuration
+bit_crush_prob: 0.05
+bit_crush_bit_min: 4
+bit_crush_bit_max: 32
+### colored noise post perturb configuration
+colored_noise_post_prob: 0.1
+colored_noise_post_snr_min: 10
+colored_noise_post_snr_max: 50
+colored_noise_post_types: ["white", "pink", "equalized"]
+### random volume configuration
+random_volume: True
+volume_min_sample: 0.015
+volume_max_sample: 0.99
+use_rms_volume: False
+sync_random_volume: True
+### output random cut
+output_normalize: True
+output_resample: False
+debug: False
+dummy: False
+batch_size: 4
+num_workers: 16
+pin_memory: True
+prefetch_factor: 4

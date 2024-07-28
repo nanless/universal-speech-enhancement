@@ -1,0 +1,61 @@
+_target_: src.models.LSGAN_module.GANModule
+
+G_optimizer:
+  _target_: torch.optim.Adam
+  _partial_: true
+  lr: 5e-4
+  weight_decay: 1e-7
+
+G_scheduler:
+  _target_: torch.optim.lr_scheduler.StepLR
+  _partial_: true
+  step_size: 30
+  gamma: 0.5
+  verbose: true
+
+D_optimizer:
+  _target_: torch.optim.Adam
+  _partial_: true
+  lr: 2e-4
+  weight_decay: 1e-7
+
+D_scheduler:
+  _target_: torch.optim.lr_scheduler.StepLR
+  _partial_: true
+  step_size: 30
+  gamma: 0.5
+  verbose: true
+
+G_criterion:
+  _target_: src.models.components.loss_function.monaural_loss.WavSpecConvergence_HIFIGAN_Vocoder_G_Loss
+  sampling_rate: 24000
+  alpha_wav_l1: 0.1
+  alpha_mag_l2: 1.0
+  alpha_mag_log: 1.0
+  alpha_mag_norm_l2: 0.5
+  alpha_mel_log: 0.5
+  alpha_mel_l2: 0.5
+  alpha_adv_gen: 1.0
+  alpha_adv_feat: 10
+  enhanced_key: "fake"
+
+D_criterion:
+  _target_: src.models.components.loss_function.monaural_loss.HIFIGAN_Vocoder_D_Loss
+  enhanced_key: "fake"
+
+G:
+  _target_: src.models.components.GAN.generator.ncsnpp.model_wrapper.NCSNPP_Wrapper
+  n_fft: 1022
+  hop_length: 160
+  num_frames: 480
+  window: "hann"
+  spec_factor: 0.15
+  spec_abs_exponent: 0.5
+
+D:
+  _target_: src.models.components.GAN.discriminator.hifigan_vocoder.hifigan_dicriminator.hifigan_vocoder_discriminator_24k_MVD
+  enhanced_key: "fake"
+
+# compile model for faster training with pytorch 2.0
+compile: false
+accumulate_grad_batches: 8

@@ -1,0 +1,7 @@
+_target_: src.data.loadwav_datamodule.LoadWavDataModule
+data_folder: "/data1/codes/SIG-Challenge/ICASSP2024/blind_data"
+target_folder: "logs/ICASSP2024_blind_data_enhanced"
+normalize: True
+sampling_rate: 24000
+batch_size: 1
+num_workers: 0

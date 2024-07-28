@@ -13,7 +13,7 @@ ______________________________________________________________________
 
 ## Features
 
-- Speech signal quality enhancement under all distortion conditions
+- Speech signal quality enhancement under any distortion conditions
 - one model for all speech enhancement tasks: noise suppression, dereverberation, equalization, packet loss concealment, bandwidth extension, declipping, and others
 - GAN-based and score diffusion-based approaches for training and inference
 - easy-to-use interface for training and inference
@@ -27,9 +27,14 @@ Universal speech enhancement aims to improve speech signals recorded under vario
 
 The model is trained on the clean speech from [EARS dataset](https://github.com/facebookresearch/ears_dataset.git) and noise signal from [DNS5 dataset](https://github.com/microsoft/DNS-Challenge.git). The sampling rate used in the project is 24 kHz. The input audio will be resampled to 24 kHz before processing, and the output audio is still 24 kHz.
 
+## Demo Video
+
+[![USE-Demo](Resources/video-demo.png)](https://www.bilibili.com/video/BV1ojvceCEMk/?spm_id_from=333.999.0.0)
+
 ## Demo Page
 
 https://nanless.github.io/universal-speech-enhancement-demo
+
 It may take a few minutes to load the audio and image files in the demo page.
 
 ## Installation

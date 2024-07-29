@@ -16,7 +16,7 @@ ______________________________________________________________________
 - Speech signal quality enhancement under any distortion conditions
 - one model for all speech enhancement tasks: noise suppression, dereverberation, equalization, packet loss concealment, bandwidth extension, declipping, and others
 - GAN-based and score diffusion-based approaches for training and inference
-- easy-to-use interface for training and inference
+- easy-to-use interface
 - 24kHz sampling rate pipeline
 
 ## Description
@@ -25,7 +25,12 @@ This repository contains the code for training and inference code for the univer
 
 Universal speech enhancement aims to improve speech signals recorded under various adverse conditions and distortions, including noise, reverberation, clipping, equalization (EQ) distortion, packet loss, codec loss, bandwidth limitations, and other forms of degradation. A comprehensive universal speech enhancement system integrates multiple techniques such as noise suppression, dereverberation, equalization, packet loss concealment, bandwidth extension, declipping, and other enhancement methods to produce speech signals that closely approximate studio-quality audio.
 
-The model is trained on the clean speech from [EARS dataset](https://github.com/facebookresearch/ears_dataset.git) and noise signal from [DNS5 dataset](https://github.com/microsoft/DNS-Challenge.git). The sampling rate used in the project is 24 kHz. The input audio will be resampled to 24 kHz before processing, and the output audio is still 24 kHz.
+The models are trained on the clean speech from [EARS dataset](https://github.com/facebookresearch/ears_dataset.git) and noise signal from [DNS5 dataset](https://github.com/microsoft/DNS-Challenge.git). The sampling rate used in the project is 24 kHz. The input audio will be resampled to 24 kHz before processing, and the output audio is still 24 kHz.
+
+## To-do List
+- [ ] Expand training data to improve model performance
+- [ ] Apply GAN-based model as initialization for score diffusion-based model to improve stability and performance
+- [ ] Support 48kHz sampling rate pipeline
 
 ## Demo Video
 
@@ -35,7 +40,7 @@ The model is trained on the clean speech from [EARS dataset](https://github.com/
 
 https://nanless.github.io/universal-speech-enhancement-demo
 
-It may take a few minutes to load the audio and image files in the demo page.
+It may take a few seconds to load the audio and image files in the demo page.
 
 ## Installation
 
